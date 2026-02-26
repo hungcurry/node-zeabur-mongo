@@ -1,8 +1,10 @@
-require('dotenv').config();  
+// 只在開發環境加載 .env 文件  
+if (process.env.NODE_ENV !== 'production') {  
+  require('dotenv').config();  
+}  
 const app = require('./src/app');  
 const connectDB = require('./src/config/db');  
 const PORT = process.env.PORT || 3000;  
-// 嘗試連接資料庫，但不阻止應用啟動  
 connectDB()  
   .then(() => {  
     console.log('✅ Database connected successfully');  
